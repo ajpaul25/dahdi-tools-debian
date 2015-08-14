@@ -1,0 +1,16 @@
+Author: Tzafrir Cohen <tzafrir.cohen@xorcom.com>
+Description: Remove the useless utility dahdi_speed
+
+It was useful long ago, but pointless now.
+
+--- a/Makefile
++++ b/Makefile
+@@ -98,7 +98,7 @@ UTILS		+= patgen pattest patlooptest hdl
+ 		   hdlcverify timertest dahdi_maint
+ 
+ 
+-BINS:=fxotune dahdi_cfg dahdi_monitor dahdi_speed dahdi_test dahdi_scan dahdi_maint
++BINS:=fxotune dahdi_cfg dahdi_monitor dahdi_test dahdi_scan dahdi_maint
+ ifeq	(1,$(PBX_NEWT))
+ 	BINS	+= dahdi_tool
+ endif

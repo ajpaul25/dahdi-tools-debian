@@ -1,0 +1,33 @@
+From 5db44e215090e7d61602e206a09a4af394b022cb Mon Sep 17 00:00:00 2001
+From: Russ Meyerriecks <rmeyerriecks@digium.com>
+Date: Wed, 17 Jun 2015 11:36:16 -0500
+Subject: [PATCH] xpp: Fix a logical not being applied to the wrong operand
+
+gcc 5 found this with the new -Werror=logical-not-parenthesis warning. Since we
+have -Wall by default, it would also fail the compile.
+
+Internal-Issue-ID: DAHLIN-347
+
+Signed-off-by: Russ Meyerriecks <rmeyerriecks@digium.com>
+Acked-by: Shaun Ruffell <sruffell@digium.com>
+(cherry picked from commit 9a181ccfbcfa846aab20bd1dcbea8f83356e2705)
+---
+ xpp/mpptalk.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/xpp/mpptalk.c b/xpp/mpptalk.c
+index e49c3cd..9bab867 100644
+--- a/xpp/mpptalk.c
++++ b/xpp/mpptalk.c
+@@ -512,7 +512,7 @@ int mpp_send_seg(struct astribank_device *astribank, const uint8_t *data, uint16
+ 
+ 	assert(astribank != NULL);
+ 	xtalk_dev = astribank->xtalk_dev;
+-	if(!astribank->burn_state == BURN_STATE_STARTED) {
++	if(astribank->burn_state != BURN_STATE_STARTED) {
+ 		ERR("Tried to send a segment while burn_state=%d\n",
+ 				astribank->burn_state);
+ 		return -EINVAL;
+-- 
+2.1.4
+

@@ -1,0 +1,17 @@
+Description: proper dahdi permissions as in Debian
+Author: Tzafrir Cohen <tzafrir.cohen@xorcom.com>
+
+In Debian DAHDI devices are owned by root:comm rather than
+asterisk:asterisk.
+
+Note that those rules are duplication of the rules in dahdi-linux. But
+this file is probably a better place for them.
+
+--- a/dahdi.rules
++++ b/dahdi.rules
+@@ -1,4 +1,4 @@
+ # DAHDI devices with ownership/permissions for running as non-root
+-SUBSYSTEM=="dahdi",		OWNER="asterisk", GROUP="asterisk", MODE="0660"
++SUBSYSTEM=="dahdi",		GROUP="comm", MODE="0660"
+ SUBSYSTEM=="dahdi_devices",	RUN="/usr/share/dahdi/handle_device"
+ SUBSYSTEM=="dahdi_spans",	RUN="/usr/share/dahdi/span_config"
