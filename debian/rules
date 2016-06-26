@@ -29,6 +29,12 @@ override_dh_auto_build:
 	# FIXME: xpp/README.Astribank.html
 	cp dahdi.rules debian/dahdi.udev
 
+override_dh_auto_clean:
+ifeq ($(wildcard Makefile),)
+	$(MAKE) -f Makefile.legacy clean
+else
+	$(MAKE) clean
+endif
 
 override_dh_auto_install:
 	# also run the 'config' target, in addition to the 'install' target:
