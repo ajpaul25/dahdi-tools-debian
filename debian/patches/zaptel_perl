@@ -2,21 +2,38 @@ Subject: Set perl installation path to vendorlib
 Author: Tzafrir Cohen <tzafrir.cohen@xorcom.com>
 Forwarded: no
 
-Point Zaptel PERL modules to the right directory under which to install
+Point DAHDI PERL modules to the right directory under which to install
 perl modules.
 
 (sitelib in Debian is under /usr/local. We don't want to install there)
 
 Debian-specific configuration.
 
---- a/xpp/Makefile
-+++ b/xpp/Makefile
-@@ -30,7 +30,7 @@ SBINDIR		= $(prefix)/sbin
- DATADIR		= $(datadir)/dahdi
- MANDIR		= $(mandir)/man8
- HOTPLUG_USB_DIR	= $(sysconfdir)/hotplug/usb
--PERLLIBDIR	:= $(shell eval `perl -V:sitelib`; echo "$$sitelib")
-+PERLLIBDIR	:= $(shell eval `perl -V:vendorlib`; echo "$$vendorlib")
- PERL_DIRS	:= $(shell cd perl_modules; find * -name '[A-Z]*' -type d| xargs)
- PERL_MODS_PAT	:= *.pm $(PERL_DIRS:%=%/*.pm)
- PERL_MODS	:= $(shell cd perl_modules; echo $(PERL_MODS_PAT))
+--- a/configure.ac
++++ b/configure.ac
+@@ -120,20 +120,22 @@ fi
+ #    - The "$datadir/perl5" directory otherwise (e.g: during "make distcheck")
+ #
+ AC_MSG_CHECKING(for perl libdir)
++set -x
+ m4_define([_PERL_LIBDIR_DEFAULT], [${datadir}/perl5])dnl
+ AC_ARG_WITH(perllib,
+ 	[AS_HELP_STRING([--with-perllib=PATH],
+-		[Location of perl modules @<:@default=]_PERL_LIBDIR_DEFAULT[, or perl -V:sitelib@:>@])],
++		[Location of perl modules @<:@default=]_PERL_LIBDIR_DEFAULT[, or perl -V:vendorlib@:>@])],
+ 	[perllibdir=$withval],
+ 	[
+ 		if test "$prefix" = 'NONE' -o "$prefix" = '/usr'; then
+-			eval `"$PERL" -V:sitelib`
+-			perllibdir="$sitelib"
++			eval `"$PERL" -V:vendorlib`
++			perllibdir="$vendorlib"
+ 		else
+ 			perllibdir='_PERL_LIBDIR_DEFAULT'
+ 		fi
+ 	]
+ )
++set +x
+ AC_SUBST([perllibdir], "$perllibdir")
+ AC_MSG_RESULT([$perllibdir])
+ AM_CONDITIONAL([PERL], [test "$perllibdir" != ''])
