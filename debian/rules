@@ -22,13 +22,10 @@ FILENAME := $(PACKAGE_SRC)_$(DEB_BASE_VERSION).orig.tar.gz
 URL := http://downloads.asterisk.org/pub/telephony/$(PACKAGE_SRC)/releases/$(PACKAGE_SRC)-$(UPVERSION).tar.gz
 
 %:
-	dh $@ --wth autotools_dev
-
-override_dh_auto_configure:
-	dh_auto_configure -- --enable-pinned
+	dh $@ --with autoreconf
 
 override_dh_auto_build:
-	$(MAKE) programs docs
+	$(MAKE) all docs
 	# FIXME: xpp/README.Astribank.html
 	cp dahdi.rules debian/dahdi.udev
 
