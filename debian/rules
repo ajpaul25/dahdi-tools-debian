@@ -57,6 +57,9 @@ else
 	$(MAKE) clean
 endif
 
+override_dh_auto_configure:
+	dh_auto_configure
+
 override_dh_auto_install:
 	# also run the 'config' target, in addition to the 'install' target:
 	dh_auto_install -- config
