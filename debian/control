@@ -10,7 +10,13 @@ Build-Depends: debhelper (>= 9),
  cpio,
  dh-autoreconf,
  pkg-config,
- dahdi-source (>= 1:2.7), libnewt-dev, bzip2, libusb-dev, asciidoc, groff, man-db
+ dahdi-source (>= 1:2.7),
+ libnewt-dev,
+ bzip2,
+ libusb-dev,
+ asciidoc,
+ groff,
+ man-db,
 Standards-Version: 3.9.4
 Homepage: http://www.asterisk.org/
 Vcs-Svn: svn://anonscm.debian.org/pkg-voip/dahdi-tools/trunk/
