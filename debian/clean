@@ -11,3 +11,18 @@ xpp/twinstar.8.html
 xpp/xpp_blink.8.html
 xpp/xpp_sync.8.html
 
+# Autotools files:
+Makefile
+config.log
+config.status
+doc/Makefile
+hotplug/Makefile
+libtool
+makeopts
+ppp/Makefile
+stamp-h1
+xpp/Makefile
+xpp/oct612x/Makefile
+xpp/perl_modules/Makefile
+xpp/xtalk/Makefile
+
