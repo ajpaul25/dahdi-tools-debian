@@ -1,3 +1,12 @@
+dahdi-tools (1:2.11.1-1) UNRELEASED; urgency=medium
+
+  * New upstream release:
+    - Support for libusb 1.0 (Closes: #810404).
+    - Run asciidoc with TZ=UTC (Closes: #795977).
+    - Builds with GCC-6 (Closes: #811932).
+
+ -- Tzafrir Cohen <tzafrir@debian.org>  Sun, 26 Jun 2016 10:55:27 +0200
+
 dahdi-tools (1:2.10.2-2) unstable; urgency=medium
 
   * gcc5.patch (Closes: #777829).
