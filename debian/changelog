@@ -1,11 +1,19 @@
-dahdi-tools (1:2.11.1-1) UNRELEASED; urgency=medium
+dahdi-tools (1:2.11.1-1) unstable; urgency=medium
 
   * New upstream release:
-    - Support for libusb 1.0 (Closes: #810404).
+    - Support for libusb 1.0
     - Run asciidoc with TZ=UTC (Closes: #795977).
     - Builds with GCC-6 (Closes: #811932).
+    - Drop patches: cflags, gcc5 (merged upstream).
+  * Switch to libusb-1.0 (Closes: #810404).
+  * Force the SONAME of libtonezone to be 2.0.
+  * generate configure at build time.
+  * Ignore generated git files.
+  * fall back to running 'clean' from Makefile.legacy.
+  * clean: some xpp/*.html files for case of no Makefile.
+  * Fix cleaning of generated autotools files.
 
- -- Tzafrir Cohen <tzafrir@debian.org>  Sun, 26 Jun 2016 10:55:27 +0200
+ -- Tzafrir Cohen <tzafrir@debian.org>  Tue, 05 Jul 2016 17:23:31 +0200
 
 dahdi-tools (1:2.10.2-2) unstable; urgency=medium
 
