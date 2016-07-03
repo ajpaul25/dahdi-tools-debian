@@ -7,6 +7,7 @@ Uploaders: Tzafrir Cohen <tzafrir@debian.org>, Mark Purcell <msp@debian.org>
 Build-Depends: debhelper (>= 9),
  autoconf,
  automake,
+ cpio,
  dh-autoreconf,
  pkg-config,
  dahdi-source (>= 1:2.7), libnewt-dev, bzip2, libusb-dev, asciidoc, groff, man-db

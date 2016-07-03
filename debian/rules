@@ -21,8 +21,29 @@ UPFILENAME := $(PACKAGE_SRC)_$(UPVERSION).orig.tar.gz
 FILENAME := $(PACKAGE_SRC)_$(DEB_BASE_VERSION).orig.tar.gz
 URL := http://downloads.asterisk.org/pub/telephony/$(PACKAGE_SRC)/releases/$(PACKAGE_SRC)-$(UPVERSION).tar.gz
 
+CHANGED_FILES_LIST = debian/savedfiles.lst
+CHANGED_FILES_ARCHIVE = debian/savedfiles.cpio
+
 %:
 	dh $@ --with autoreconf
+
+override_dh_autoreconf:
+	if [ ! -f "$(CHANGED_FILES_ARCHIVE)" -a -f Makefile.in ]; then \
+	  cpio -o < $(CHANGED_FILES_LIST) > $(CHANGED_FILES_ARCHIVE); \
+	fi
+	dh_autoreconf
+
+override_dh_autoreconf_clean:
+	dh_autoreconf_clean
+	if [ -f "$(CHANGED_FILES_ARCHIVE)" ]; then \
+	  cpio -idu < $(CHANGED_FILES_ARCHIVE) && \
+	  rm -f $(CHANGED_FILES_ARCHIVE); \
+	fi
+
+# An ugly workaround because those files are included in the tarball
+override_dh_clean:
+	dh_clean -X autom4te.cache
+
 
 override_dh_auto_build:
 	$(MAKE) all docs
