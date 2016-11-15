@@ -48,7 +48,7 @@ override_dh_clean:
 override_dh_auto_build:
 	$(MAKE) all docs
 	# FIXME: xpp/README.Astribank.html
-	cp dahdi.rules debian/dahdi.udev
+	cat dahdi.rules xpp/xpp.rules >debian/dahdi.udev
 
 override_dh_auto_clean:
 ifeq ($(wildcard Makefile),)
