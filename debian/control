@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Debian VoIP Team <pkg-voip-maintainers@lists.alioth.debian.org>
 Uploaders: Tzafrir Cohen <tzafrir@debian.org>, Mark Purcell <msp@debian.org>
 # groff, man-db and asciidoc are required for generating documentation
-Build-Depends: debhelper (>= 9),
+Build-Depends: debhelper (>= 10),
  autoconf,
  automake,
  cpio,
