@@ -5,3 +5,4 @@ remove_dahdi_speed
 soname.patch
 no_xtalk_send
 udevadm_path.patch
+dracut.patch
