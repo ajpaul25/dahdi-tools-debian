@@ -1,3 +1,10 @@
+dahdi-tools (1:3.0.0-1) UNRELEASED; urgency=medium
+
+  * New upstream release.
+    - Patches no_xtalk_send, udevadm_path and dracut removed: merged upstream.
+
+ -- Tzafrir Cohen <tzafrir@debian.org>  Sun, 03 Mar 2019 23:44:56 +0200
+
 dahdi-tools (1:2.11.1-3) unstable; urgency=medium
 
   * Team upload.
