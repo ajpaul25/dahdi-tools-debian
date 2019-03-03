@@ -11,18 +11,6 @@ ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
 	CFLAGS += -g
 endif
 
-PREFIX:=dahdi
-PACKAGE_SRC:=$(PREFIX)-tools
-
-DEBVERSION:=$(shell head -n 1 debian/changelog \
-		    | sed -e 's/^[^(]*(\([^)]*\)).*/\1/')
-DEB_BASE_VERSION:=$(shell echo $(DEBVERSION) | sed -e 's/^.*://' -e 's/-[0-9.]*$$//')
-UPVERSION:=$(shell echo $(DEB_BASE_VERSION) | sed -e 's/~dfsg\(~\|$$\)/\1/' -e 's/~\(rc\|beta\)/-\1/')
-
-UPFILENAME := $(PACKAGE_SRC)_$(UPVERSION).orig.tar.gz
-FILENAME := $(PACKAGE_SRC)_$(DEB_BASE_VERSION).orig.tar.gz
-URL := http://downloads.asterisk.org/pub/telephony/$(PACKAGE_SRC)/releases/$(PACKAGE_SRC)-$(UPVERSION).tar.gz
-
 CHANGED_FILES_LIST = debian/savedfiles.lst
 CHANGED_FILES_ARCHIVE = debian/savedfiles.cpio
 
@@ -65,14 +53,3 @@ override_dh_auto_install:
 	# also run the 'config' target, in addition to the 'install' target:
 	dh_auto_install -- config
 	rm $(CURDIR)/debian/tmp/usr/share/dahdi/span_config.d/50-asterisk
-
-print-version:
-	@@echo "Debian version:          $(DEBVERSION)"
-	@@echo "Upstream version:        $(UPVERSION)"
-
-TARBALL_DIR=../tarballs/zaptel-$(UPVERSION).tmp
-get-orig-source:
-	@@dh_testdir
-	@@[ -d ../tarballs/. ]||mkdir -p ../tarballs
-	@@echo Downloading $(UPFILENAME) from $(URL) ...
-	@@wget  -nv -T10 -t3 --verbose -O ../tarballs/$(FILENAME) $(URL)
