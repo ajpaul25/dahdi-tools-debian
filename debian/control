@@ -8,7 +8,6 @@ Build-Depends: debhelper (>= 10),
  autoconf,
  automake,
  cpio,
- dh-autoreconf,
  pkg-config,
  dahdi-source (>= 1:2.7),
  libnewt-dev,
@@ -29,11 +28,11 @@ Depends: ${shlibs:Depends}, ${perl:Depends}, ${misc:Depends}, procps, fxload, da
 Conflicts: zaptel
 Replaces: zaptel
 Description: utilities for using the DAHDI kernel modules
- DAHDI (formly Zaptel) is an interface for telephony devices used by e.g. 
- the Asterisk PBX software. The dahdi-* packages provide the kernel 
+ DAHDI (formly Zaptel) is an interface for telephony devices used by e.g.
+ the Asterisk PBX software. The dahdi-* packages provide the kernel
  DAHDI kernel modules and their required setup environment.
  .
- This package includes userspace utilities required to configure DAHDI 
+ This package includes userspace utilities required to configure DAHDI
  modules.
 
 Package: libtonezone2.0

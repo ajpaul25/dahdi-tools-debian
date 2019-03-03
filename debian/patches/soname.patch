@@ -1,3 +1,9 @@
+From: Tzafrir Cohen <tzafrir@debian.org>
+Subject: add extra digit to library SO name: 2.0
+
+Asterisk and various other programs were already looking for that SO
+name.
+
 diff --git a/configure.ac b/configure.ac
 index 826a7ec..2afe476 100644
 --- a/configure.ac

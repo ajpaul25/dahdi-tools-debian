@@ -5,6 +5,8 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
+DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
 ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
 	CFLAGS += -g
 endif
@@ -47,7 +49,6 @@ override_dh_clean:
 
 override_dh_auto_build:
 	$(MAKE) all docs
-	# FIXME: xpp/README.Astribank.html
 	cat dahdi.rules xpp/xpp.rules >debian/dahdi.udev
 
 override_dh_auto_clean:
@@ -75,4 +76,3 @@ get-orig-source:
 	@@[ -d ../tarballs/. ]||mkdir -p ../tarballs
 	@@echo Downloading $(UPFILENAME) from $(URL) ...
 	@@wget  -nv -T10 -t3 --verbose -O ../tarballs/$(FILENAME) $(URL)
-

@@ -1,4 +1,5 @@
 libtonezone.so.2.0 libtonezone2.0 #MINVER#
+* Build-Depends-Package: libtonezone-dev
  builtin_zones@Base 1:2.2.1.1
  dahdi_tools_version@Base 1:2.2.1.1
  tone_zone_find@Base 1:2.2.1.1

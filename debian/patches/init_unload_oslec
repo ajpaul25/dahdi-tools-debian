@@ -11,7 +11,7 @@ will attempts load 'echo', that does not depend on dahdi, and hence
 will not be unloaded by default. Thus upgrading to a newer version (of
 a newer build) may break.
 
-This change will not be commited upstream, as OSLEC is not used there.
+This change will not be committed upstream, as OSLEC is not used there.
 
 --- a/dahdi.init
 +++ b/dahdi.init
