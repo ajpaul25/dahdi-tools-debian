@@ -9,12 +9,12 @@ and new name.
 
 Signed-off-by: Tzafrir Cohen <tzafrir@debian.org>
 ---
- dahdi_span_assignments | 17 ++++++++++++++---
+ dahdi_span_assignments | 15 ++++++++++++---
  dahdi_span_types       | 23 ++++++++++++++++++-----
- 2 files changed, 32 insertions(+), 8 deletions(-)
+ 2 files changed, 30 insertions(+), 8 deletions(-)
 
 diff --git a/dahdi_span_assignments b/dahdi_span_assignments
-index 9b4f305..7fd9fea 100755
+index 9b4f305..235d61e 100755
 --- a/dahdi_span_assignments
 +++ b/dahdi_span_assignments
 @@ -151,6 +151,15 @@ attr_clean() {
@@ -42,22 +42,20 @@ index 9b4f305..7fd9fea 100755
  		do
  			span=`grep 2>/dev/null -Hw "$local_spanno" "$device/span-"*"/local_spanno" | \
  				sed -e 's,/local_spanno:.*,,' -e 's,.*/,,'`
-@@ -193,7 +202,8 @@ dump_config() {
+@@ -193,7 +202,7 @@ dump_config() {
  			id="$devpath"
  		fi
  		echo "# Device: [$hardware_id] @$location $devpath"
 -		for local_spanno in `cut -d: -f1 "$device/spantype"`
-+		sp_file="dahdi_spantype"
 +		for local_spanno in `get_device_spannos "$device"`
  		do
  			span=`grep 2>/dev/null -Hw "$local_spanno" "$device/span-"*"/local_spanno" | \
  				sed -e 's,/local_spanno:.*,,' -e 's,.*/,,'`
-@@ -358,7 +368,8 @@ list_devices() {
+@@ -358,7 +367,7 @@ list_devices() {
  		devpath=`cd "$device" && pwd -P`
  		location='@'`attr_clean "$device/location"`
  		hardware_id=`attr_clean "$device/hardware_id"`
 -		for local_spanno in `cut -d: -f1 "$device/spantype"`
-+		sp_file="dahdi_spantype"
 +		for local_spanno in `get_device_spannos "$device"`
  		do
  			found=`dev_match_conf "$devpath" "$location" "$hardware_id" "$local_spanno"`
