@@ -16,7 +16,7 @@ Build-Depends: debhelper (>= 10),
  asciidoc-base | asciidoc,
  groff,
  man-db,
-Standards-Version: 3.9.8
+Standards-Version: 4.3.0
 Homepage: http://www.asterisk.org/
 Vcs-Git: https://salsa.debian.org/pkg-voip-team/dahdi-tools.git
 Vcs-Browser: https://salsa.debian.org/pkg-voip-team/dahdi-tools
